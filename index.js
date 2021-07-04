@@ -1,16 +1,17 @@
-const robots = {
-  input: require("./robots/input.js"),
-  text: require("./robots/text.js"),
-  state: require("./robots/state.js"),
-  image: require("./robots/image.js"),
+const bots = {
+  input: require("./bots/input.js"),
+  text: require("./bots/text.js"),
+  state: require("./bots/state.js"),
+  image: require("./bots/image.js"),
 };
 
 const start = async () => {
-  robots.input();
-  await robots.text();
-  await robots.image();
+  bots.input();
+  await bots.text();
+  await bots.image();
 
-  const content = robots.state.load();
+  const content = bots.state.load();
+  console.dir(content, { depth: null });
 };
 
 start();

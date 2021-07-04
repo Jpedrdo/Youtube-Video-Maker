@@ -1,7 +1,7 @@
 const readline = require("readline-sync");
 const state = require("./state.js");
 
-const robot = () => {
+const bot = () => {
   const content = {
     maximumSentences: 7,
   };
@@ -26,4 +26,4 @@ const robot = () => {
   state.save(content);
 };
 
-module.exports = robot;
+module.exports = bot;

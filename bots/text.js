@@ -11,10 +11,12 @@ const nlu = new NaturalLanguageUnderstandingV1({
   url: "https://api.us-south.natural-language-understanding.watson.cloud.ibm.com",
 });
 
-const robot = async () => {
+const bot = async () => {
+  console.log("> [text-bot] Starting...");
   const content = state.load();
 
   const fetchContentFromWikipedio = async (content) => {
+    console.log("> [text-bot] Searching by keyword on Wikipedia");
     try {
       const algorithmiaAuthenticated = algorithmia(algorithimaApiKey);
       const wikipediaAlgorithm = algorithmiaAuthenticated.algo(
@@ -26,8 +28,9 @@ const robot = async () => {
       const wikipediaContent = wikipediaResponse.get();
 
       content.sourceContentOriginal = wikipediaContent.content;
+      console.log("> [text-bot] Search done successfully!");
     } catch (error) {
-      return (content.sourceContentOriginal = error);
+      console.log(`> [text-bot]: Error doing the search: ${error}`);
     }
   };
 
@@ -103,8 +106,11 @@ const robot = async () => {
   };
 
   const fetchWatsonKeyWordsAll = async (content) => {
+    console.log("> [text-bot] Starting to search for keywords in Watson");
     for (const s of content.sentences) {
+      console.log(`> [text-bot] Sentence: "${s.text}"`);
       s.keywords = await fetchWatsonKeyWords(s.text);
+      console.log(`> [text-bot] Keywords: ${s.keywords.join(", ")}\n`);
     }
   };
 
@@ -117,4 +123,4 @@ const robot = async () => {
   state.save(content);
 };
 
-module.exports = robot;
+module.exports = bot;
