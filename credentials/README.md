@@ -24,3 +24,14 @@ File: `watson-nlu.json`
   "url": "YOUR URL"
 }
 ```
+
+## Google Custom Search API
+
+File: `google-search.json`
+
+```
+{
+  "apiKey": "YOUR KEY",
+  "searchEngineId": "YOUR ENGINE ID"
+}
+```
