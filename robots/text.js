@@ -2,6 +2,7 @@ const algorithmia = require("algorithmia");
 const algorithimaApiKey = require("../credentials/algorithmia.json").apiKey;
 const setenceBoundaryDetection = require("sbd");
 const watsonApiKey = require("../credentials/watson-nlu.json").apikey;
+const state = require("./state.js");
 const NaturalLanguageUnderstandingV1 = require("watson-developer-cloud/natural-language-understanding/v1.js");
 
 const nlu = new NaturalLanguageUnderstandingV1({
@@ -10,7 +11,9 @@ const nlu = new NaturalLanguageUnderstandingV1({
   url: "https://api.us-south.natural-language-understanding.watson.cloud.ibm.com",
 });
 
-const robot = async (content) => {
+const robot = async () => {
+  const content = state.load();
+
   const fetchContentFromWikipedio = async (content) => {
     try {
       const algorithmiaAuthenticated = algorithmia(algorithimaApiKey);
@@ -24,8 +27,7 @@ const robot = async (content) => {
 
       content.sourceContentOriginal = wikipediaContent.content;
     } catch (error) {
-      content.sourceContentOriginal = error;
-      return error;
+      return (content.sourceContentOriginal = error);
     }
   };
 
@@ -111,6 +113,8 @@ const robot = async (content) => {
   breakContentIntoSentences(content);
   limitMaximumSentences(content);
   await fetchWatsonKeyWordsAll(content);
+
+  state.save(content);
 };
 
 module.exports = robot;
