@@ -4,7 +4,9 @@ const robots = {
 };
 
 const start = async () => {
-  const content = {};
+  const content = {
+    maximumSentences: 7,
+  };
 
   const askAndReturnSearchTerm = () => {
     return readline.question("Type a Wikipedia search term: ");
