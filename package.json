@@ -18,6 +18,7 @@
   "homepage": "https://github.com/Jpedrdo/Youtube-Video-Maker#readme",
   "dependencies": {
     "algorithmia": "^0.3.10",
+    "googleapis": "^80.1.0",
     "readline-sync": "^1.4.10",
     "sbd": "^1.0.19",
     "watson-developer-cloud": "^4.0.1"
