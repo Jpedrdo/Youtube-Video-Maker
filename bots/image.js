@@ -27,14 +27,26 @@ const bot = async () => {
   };
 
   const fetchImagesAllSentences = async (content) => {
-    for (const s of content.sentences) {
-      const query = `${content.searchTerm} ${s.keywords[0]}`;
-      s.images = await fetchGoogleImagesLinks(query);
+    for (
+      let sentenceIndex = 0;
+      sentenceIndex < content.sentences.length;
+      sentenceIndex++
+    ) {
+      let query;
+      if (sentenceIndex === 0) {
+        query = `${content.searchTerm}`;
+      } else {
+        query = `${content.searchTerm} ${content.sentences[sentenceIndex].keywords[0]}`;
+      }
 
-      s.googleSearchQuery = query;
       console.log(
         `> [image-bot]: Start querying Google Images with: "${query}"`
       );
+
+      content.sentences[sentenceIndex].images = await fetchGoogleImagesLinks(
+        query
+      );
+      content.sentences[sentenceIndex].googleSearchQuery = query;
     }
   };
 

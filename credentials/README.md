@@ -35,3 +35,22 @@ File: `google-search.json`
   "searchEngineId": "YOUR ENGINE ID"
 }
 ```
+
+## Google Youtube Api
+
+File: `google-youtube.json`
+
+```
+{
+  "web": {
+    "client_id": "YOUR CLIENTE ID",
+    "project_id": "YOUR PROJECT ID",
+    "auth_uri": "YOUR AUTH URI",
+    "token_uri": "YOUR TOKEN URI",
+    "auth_provider_x509_cert_url": "YOUR AUTH PROVIDER URL",
+    "client_secret": "YOUR CLIENT SECRET",
+    "redirect_uris": ["YOUR REDIRECT URIS CALLBACK URL"],
+    "javascript_origins": ["YOUR LOCAL HOST URL"]
+  }
+}
+```
