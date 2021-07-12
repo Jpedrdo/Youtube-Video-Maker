@@ -39,7 +39,7 @@ const bot = async () => {
             return reject(error);
           }
 
-          console.log(`> [image-bot]: Image converted: ${outputFile}`);
+          console.log(`> [video-bot]: Image converted: ${outputFile}`);
           resolve();
         });
     });
@@ -102,7 +102,7 @@ const bot = async () => {
             return reject(error);
           }
 
-          console.log(`> [image-bot]: Sentence created: ${outputFile}`);
+          console.log(`> [video-bot]: Sentence created: ${outputFile}`);
           resolve();
         });
     });
@@ -130,7 +130,7 @@ const bot = async () => {
             return reject(error);
           }
 
-          console.log("> [image-bot]: YouTube thumbnail created");
+          console.log("> [video-bot]: YouTube thumbnail created");
           resolve();
         });
     });
