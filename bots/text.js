@@ -12,11 +12,11 @@ const nlu = new NaturalLanguageUnderstandingV1({
 });
 
 const bot = async () => {
-  console.log("> [text-bot] Starting...");
+  console.log("> [text-bot]: Starting...");
   const content = state.load();
 
   const fetchContentFromWikipedio = async (content) => {
-    console.log("> [text-bot] Searching by keyword on Wikipedia");
+    console.log("> [text-bot]: Searching by keyword on Wikipedia");
     try {
       const algorithmiaAuthenticated = algorithmia(algorithimaApiKey);
       const wikipediaAlgorithm = algorithmiaAuthenticated.algo(
@@ -28,7 +28,7 @@ const bot = async () => {
       const wikipediaContent = wikipediaResponse.get();
 
       content.sourceContentOriginal = wikipediaContent.content;
-      console.log("> [text-bot] Search done successfully!");
+      console.log("> [text-bot]: Search done successfully!");
     } catch (error) {
       console.log(`> [text-bot]: Error doing the search: ${error}`);
     }
@@ -92,7 +92,8 @@ const bot = async () => {
         },
         (error, response) => {
           if (error) {
-            throw error;
+            reject(error);
+            return;
           }
 
           const keywords = response.keywords.map((k) => {
@@ -106,11 +107,11 @@ const bot = async () => {
   };
 
   const fetchWatsonKeyWordsAll = async (content) => {
-    console.log("> [text-bot] Starting to search for keywords in Watson");
+    console.log("> [text-bot]: Starting to search for keywords in Watson");
     for (const s of content.sentences) {
-      console.log(`> [text-bot] Sentence: "${s.text}"`);
+      console.log(`> [text-bot]: Sentence: "${s.text}"`);
       s.keywords = await fetchWatsonKeyWords(s.text);
-      console.log(`> [text-bot] Keywords: ${s.keywords.join(", ")}\n`);
+      console.log(`> [text-bot]: Keywords: ${s.keywords.join(", ")}\n`);
     }
   };
 
