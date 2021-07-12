@@ -5,7 +5,9 @@ const state = require("./state.js");
 const googleSearchCredentials = require("../credentials/google-search.json");
 
 const bot = async () => {
-  console.log("> [image-bot] Starting...");
+  console.log(
+    "> [image-bot]: Starting with all the processes of the requested images..."
+  );
   const content = state.load();
 
   const fetchGoogleImagesLinks = async (query) => {
